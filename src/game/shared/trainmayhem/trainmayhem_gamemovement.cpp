@@ -661,7 +661,7 @@ void CTrainMayhemGameMovement::FullLadderMove()
 			player->SetMoveType(MOVETYPE_WALK);
 			player->SetMoveCollide(MOVECOLLIDE_DEFAULT);
 			SetLadder(NULL);
-			GetTrainMayhemPlayer()->m_bPlayUseDenySound = false;
+			//GetTrainMayhemPlayer()->m_bPlayUseDenySound = false;
 
 			// Dismount with a bit of velocity in facing direction
 			VectorScale(m_vecForward, USE_DISMOUNT_SPEED, mv->m_vecVelocity);
@@ -919,7 +919,7 @@ bool CTrainMayhemGameMovement::LadderMove(void)
 #if !defined (CLIENT_DLL)
 	if (!ladder && bestLadder && sv_ladder_useonly.GetBool())
 	{
-		GetTrainMayhemPlayer()->DisplayLadderHudHint();
+		//GetTrainMayhemPlayer()->DisplayLadderHudHint();
 	}
 #endif
 
@@ -974,7 +974,7 @@ bool CTrainMayhemGameMovement::LadderMove(void)
 	// Don't play the deny sound
 	if (pressed_use)
 	{
-		GetTrainMayhemPlayer()->m_bPlayUseDenySound = false;
+		//GetTrainMayhemPlayer()->m_bPlayUseDenySound = false;
 	}
 
 	// Make sure we are on the ladder
@@ -1117,13 +1117,15 @@ bool CTrainMayhemGameMovement::LadderMove(void)
 
 void CTrainMayhemGameMovement::SetGroundEntity(trace_t *pm)
 {
-	CBaseEntity *newGround = pm ? pm->m_pEnt : NULL;
+	//CBaseEntity *newGround = pm ? pm->m_pEnt : NULL;
 
+	/*
 	//Adrian: Special case for combine balls.
 	if (newGround && newGround->GetCollisionGroup() == HL2COLLISION_GROUP_COMBINE_BALL_NPC)
 	{
 		return;
 	}
+	*/
 
 	BaseClass::SetGroundEntity(pm);
 }

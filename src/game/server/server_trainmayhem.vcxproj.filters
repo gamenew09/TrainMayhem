@@ -1580,6 +1580,9 @@
     <ClInclude Include="trainmayhem\trainmayhem_gameinterface.h">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\game\shared\trainmayhem\trainmayhem_gamemovement.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\game\shared\trainmayhem\trainmayhem_gamerules.h">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClInclude>
@@ -1600,12 +1603,6 @@
     </ClInclude>
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="..\shared\trainmayhem\trainmayhem_gamemovement.h">
-      <Filter>Source Files\Train Mayhem</Filter>
-    </ClInclude>
-    <ClInclude Include="trainmayhem\trainmayhem_playerlocaldata.h">
-      <Filter>Source Files\Train Mayhem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2917,7 +2914,13 @@
     <ClCompile Include="trainmayhem\trainmayhem_client.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
+    <ClCompile Include="trainmayhem\trainmayhem_eventlog.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
     <ClCompile Include="trainmayhem\trainmayhem_gameinterface.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_gamemovement.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_gamerules.cpp">
@@ -2946,15 +2949,6 @@
     </ClCompile>
     <ClCompile Include="toolframework_server.cpp">
       <Filter>Tools Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="trainmayhem\trainmayhem_eventlog.cpp">
-      <Filter>Source Files\Train Mayhem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\shared\trainmayhem\trainmayhem_gamemovement.cpp">
-      <Filter>Source Files\Train Mayhem</Filter>
-    </ClCompile>
-    <ClCompile Include="trainmayhem\trainmayhem_playerlocaldata.cpp">
-      <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

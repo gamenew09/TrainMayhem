@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Train Mayhem">
       <UniqueIdentifier>{F640AEEE-DF62-48EF-A524-F3C0CB1A067E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Train Mayhem\UI">
+      <UniqueIdentifier>{92D627AC-3565-6B8C-D9A4-FFF0F3764F8E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Tool Framework">
       <UniqueIdentifier>{C8FC1989-2499-2137-2EEA-17663813D98F}</UniqueIdentifier>
     </Filter>
@@ -1778,6 +1781,9 @@
     <ClInclude Include="c_team_objectiveresource.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="c_team_train_watcher.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\game\client\c_vote_controller.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -1838,6 +1844,21 @@
     <ClInclude Include="..\..\game\shared\sixense\sixense_convars_extern.h">
       <Filter>Source Files\Sixense</Filter>
     </ClInclude>
+    <ClInclude Include="trainmayhem\c_corpse.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
+    <ClInclude Include="trainmayhem\c_trainmayhem_player.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
+    <ClInclude Include="trainmayhem\c_trainmayhem_playerlocaldata.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
+    <ClInclude Include="trainmayhem\clientmode_trainmayhemnormal.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\game\shared\trainmayhem\trainmayhem_gamemovement.h">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\game\shared\trainmayhem\trainmayhem_gamerules.h">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClInclude>
@@ -1852,6 +1873,9 @@
     </ClInclude>
     <ClInclude Include="..\..\game\shared\trainmayhem\weapon_trainmayhembase.h">
       <Filter>Source Files\Train Mayhem</Filter>
+    </ClInclude>
+    <ClInclude Include="trainmayhem\ui\trainmayhem_hud_chat.h">
+      <Filter>Source Files\Train Mayhem\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\public\tools\bonelist.h">
       <Filter>Tool Framework</Filter>
@@ -2147,6 +2171,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c_team_objectiveresource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c_team_train_watcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c_tesla.cpp">
@@ -3136,10 +3163,34 @@
     <ClCompile Include="smoke_fog_overlay.cpp">
       <Filter>Source Files\Temporary Entities</Filter>
     </ClCompile>
+    <ClCompile Include="trainmayhem\c_corpse.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\c_trainmayhem_player.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\c_trainmayhem_playerlocaldata.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\clientmode_trainmayhemnormal.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\trainmayhem_clientmode.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_gamemovement.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_gamerules.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
+    <ClCompile Include="trainmayhem\trainmayhem_in_main.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_player_shared.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\trainmayhem_prediction.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_usermessages.cpp">
@@ -3148,8 +3199,17 @@
     <ClCompile Include="..\..\game\shared\trainmayhem\trainmayhem_weapon_parse.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
     </ClCompile>
+    <ClCompile Include="trainmayhem\vgui_rootpanel_trainmayhem.cpp">
+      <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\game\shared\trainmayhem\weapon_trainmayhembase.cpp">
       <Filter>Source Files\Train Mayhem</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\ui\hud_weaponselection.cpp">
+      <Filter>Source Files\Train Mayhem\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="trainmayhem\ui\trainmayhem_hud_chat.cpp">
+      <Filter>Source Files\Train Mayhem\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\public\tools\bonelist.cpp">
       <Filter>Tool Framework</Filter>

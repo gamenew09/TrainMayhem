@@ -20,6 +20,12 @@ ipch
 *.vcxproj
 *.sln
 
+*.vcxproj.filters
+*.vcxproj.vpc_crc
+
+*.VC.db
+*.VC.opendb
+
 # OSX/Linux build products
 *.mak
 *.mak.vpc_crc

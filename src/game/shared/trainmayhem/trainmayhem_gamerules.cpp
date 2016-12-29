@@ -12,7 +12,7 @@
 #include "ammodef.h"
 
 #ifdef CLIENT_DLL
-#include "c_hl2mp_player.h"
+#include "c_trainmayhem_player.h"
 #else
 
 #include "eventqueue.h"
@@ -97,7 +97,7 @@ static const char *s_PreserveEnts[] =
 {
 	"ai_network",
 	"ai_hint",
-	"hl2mp_gamerules",
+	"trainmayhem_gamerules",
 	"team_manager",
 	"player_manager",
 	"env_soundscape",
@@ -135,6 +135,10 @@ static const char *s_PreserveEnts[] =
 	"point_devshot_camera",
 	"", // END Marker
 };
+
+#if defined(CLIENT_DLL)
+
+#else
 
 class CCorpse : public CBaseAnimating
 {
@@ -200,6 +204,8 @@ void CopyToBodyQue(CBaseAnimating *pCorpse)
 	UTIL_SetSize(pHead, pCorpse->WorldAlignMins(), pCorpse->WorldAlignMaxs());
 	g_pBodyQueueHead = (CCorpse *)pHead->GetOwnerEntity();
 }
+
+#endif
 
 #ifdef CLIENT_DLL
 void RecvProxy_TrainMayhemRules(const RecvProp *pProp, void **pOut, void *pData, int objectID)
@@ -309,7 +315,7 @@ void CTrainMayhemRules::CreateStandardEntities(void)
 #ifdef DBGFLAG_ASSERT
 	CBaseEntity *pEnt =
 #endif
-		CBaseEntity::Create("hl2mp_gamerules", vec3_origin, vec3_angle);
+		CBaseEntity::Create("trainmayhem_gamerules", vec3_origin, vec3_angle);
 	Assert(pEnt);
 #endif
 }

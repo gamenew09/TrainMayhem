@@ -76,6 +76,12 @@ $Project "Server (Train Mayhem)"
 			// PlayerMove
 			$File "trainmayhem\trainmayhem_playermove.cpp"
 			
+			// Logging
+			$File "trainmayhem\trainmayhem_eventlog.cpp"
+			
+			// Player Move
+			$File "trainmayhem\trainmayhem_playermove.cpp"
+			
 			// Shared Files //
 			
 			// Player Shared
@@ -96,6 +102,10 @@ $Project "Server (Train Mayhem)"
 		
 			// Move Data
 			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_movedata.h"
+			
+			// GameMovement Class.
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamemovement.h"
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamemovement.cpp"
 			
 			// User Message Registration
 			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_usermessages.cpp"

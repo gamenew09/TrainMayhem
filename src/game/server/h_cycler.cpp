@@ -18,6 +18,7 @@
 
 #define FCYCLER_NOTSOLID		0x0001
 
+#if 0
 extern short		g_sModelIndexSmoke; // (in combatweapon.cpp) holds the index for the smoke cloud
 
 BEGIN_DATADESC( CCycler )
@@ -514,5 +515,4 @@ void CBlendingCycler::Think( void )
 		}
 	}
 }
-
-
+#endif

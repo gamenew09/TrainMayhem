@@ -38,7 +38,7 @@ LINK_ENTITY_TO_CLASS(player, CTrainMayhemPlayer);
 LINK_ENTITY_TO_CLASS(info_player_combine, CPointEntity);
 LINK_ENTITY_TO_CLASS(info_player_rebel, CPointEntity);
 
-IMPLEMENT_SERVERCLASS_ST(CTrainMayhemPlayer, DT_HL2MP_Player)
+IMPLEMENT_SERVERCLASS_ST(CTrainMayhemPlayer, DT_TrainMayhem_Player)
 SendPropAngle(SENDINFO_VECTORELEM(m_angEyeAngles, 0), 11, SPROP_CHANGES_OFTEN),
 SendPropAngle(SENDINFO_VECTORELEM(m_angEyeAngles, 1), 11, SPROP_CHANGES_OFTEN),
 SendPropEHandle(SENDINFO(m_hRagdoll)),
@@ -90,6 +90,17 @@ const char *g_ppszRandomCombineModels[] =
 
 #define HL2MPPLAYER_PHYSDAMAGE_SCALE 4.0f
 
+BEGIN_SIMPLE_DATADESC(LadderMove_t)
+	DEFINE_FIELD(m_bForceLadderMove, FIELD_BOOLEAN),
+	DEFINE_FIELD(m_bForceMount, FIELD_BOOLEAN),
+	DEFINE_FIELD(m_flStartTime, FIELD_TIME),
+	DEFINE_FIELD(m_flArrivalTime, FIELD_TIME),
+	DEFINE_FIELD(m_vecGoalPosition, FIELD_POSITION_VECTOR),
+	DEFINE_FIELD(m_vecStartPosition, FIELD_POSITION_VECTOR),
+	DEFINE_FIELD(m_hForceLadder, FIELD_EHANDLE),
+	DEFINE_FIELD(m_hReservedSpot, FIELD_EHANDLE),
+END_DATADESC()
+
 #pragma warning( disable : 4355 )
 
 CTrainMayhemPlayer::CTrainMayhemPlayer() : m_PlayerAnimState(this)
@@ -116,6 +127,11 @@ CTrainMayhemPlayer::~CTrainMayhemPlayer(void)
 
 }
 
+LadderMove_t *CTrainMayhemPlayer::GetLadderMove(void)
+{
+	return &m_LocalData.m_LadderMove;
+}
+
 void CTrainMayhemPlayer::UpdateOnRemove(void)
 {
 	if (m_hRagdoll)
@@ -130,6 +146,8 @@ void CTrainMayhemPlayer::UpdateOnRemove(void)
 void CTrainMayhemPlayer::Precache(void)
 {
 	BaseClass::Precache();
+
+	DevMsg("Precache is called!\n");
 
 	PrecacheModel("sprites/glow01.vmt");
 
@@ -155,6 +173,7 @@ void CTrainMayhemPlayer::Precache(void)
 
 void CTrainMayhemPlayer::GiveAllItems(void)
 {
+	/*
 	EquipSuit();
 
 	CBasePlayer::GiveAmmo(255, "Pistol");
@@ -187,11 +206,12 @@ void CTrainMayhemPlayer::GiveAllItems(void)
 	GiveNamedItem("weapon_slam");
 
 	GiveNamedItem("weapon_physcannon");
-
+	*/
 }
 
 void CTrainMayhemPlayer::GiveDefaultItems(void)
 {
+	/*
 	EquipSuit();
 
 	// We will probably have custom weapons instead of the hl2 weapons.
@@ -219,6 +239,7 @@ void CTrainMayhemPlayer::GiveDefaultItems(void)
 	{
 		Weapon_Switch(Weapon_OwnsThisType("weapon_physcannon"));
 	}
+	*/
 }
 
 void CTrainMayhemPlayer::PickDefaultSpawnTeam(void)
@@ -276,6 +297,10 @@ void CTrainMayhemPlayer::PickDefaultSpawnTeam(void)
 //-----------------------------------------------------------------------------
 void CTrainMayhemPlayer::Spawn(void)
 {
+	Precache(); // Precache is automatically called.
+
+	//StartWalking();
+
 	m_flNextModelChangeTime = 0.0f;
 	m_flNextTeamChangeTime = 0.0f;
 
@@ -320,11 +345,13 @@ void CTrainMayhemPlayer::Spawn(void)
 	SetPlayerUnderwater(false);
 
 	m_bReady = false;
+
+	SetMaxSpeed(320.0f);
 }
 
 void CTrainMayhemPlayer::PickupObject(CBaseEntity *pObject, bool bLimitMassAndSize)
 {
-
+	
 }
 
 bool CTrainMayhemPlayer::ValidatePlayerModel(const char *pModel)
@@ -1061,10 +1088,10 @@ bool CTrainMayhemPlayer::BecomeRagdollOnClient(const Vector &force)
 // Ragdoll entities.
 // -------------------------------------------------------------------------------- //
 
-class CHL2MPRagdoll : public CBaseAnimatingOverlay
+class CTrainMayhemRagdoll : public CBaseAnimatingOverlay
 {
 public:
-	DECLARE_CLASS(CHL2MPRagdoll, CBaseAnimatingOverlay);
+	DECLARE_CLASS(CTrainMayhemRagdoll, CBaseAnimatingOverlay);
 	DECLARE_SERVERCLASS();
 
 	// Transmit ragdolls to everyone.
@@ -1082,9 +1109,9 @@ public:
 	CNetworkVector(m_vecRagdollOrigin);
 };
 
-LINK_ENTITY_TO_CLASS(hl2mp_ragdoll, CHL2MPRagdoll);
+LINK_ENTITY_TO_CLASS(trainmayhem_ragdoll, CTrainMayhemRagdoll);
 
-IMPLEMENT_SERVERCLASS_ST_NOBASE(CHL2MPRagdoll, DT_HL2MPRagdoll)
+IMPLEMENT_SERVERCLASS_ST_NOBASE(CTrainMayhemRagdoll, DT_TrainMayhemRagdoll)
 SendPropVector(SENDINFO(m_vecRagdollOrigin), -1, SPROP_COORD),
 SendPropEHandle(SENDINFO(m_hPlayer)),
 SendPropModelIndex(SENDINFO(m_nModelIndex)),
@@ -1103,12 +1130,12 @@ void CTrainMayhemPlayer::CreateRagdollEntity(void)
 	}
 
 	// If we already have a ragdoll, don't make another one.
-	CHL2MPRagdoll *pRagdoll = dynamic_cast< CHL2MPRagdoll* >(m_hRagdoll.Get());
+	CTrainMayhemRagdoll *pRagdoll = dynamic_cast< CTrainMayhemRagdoll* >(m_hRagdoll.Get());
 
 	if (!pRagdoll)
 	{
 		// create a new one
-		pRagdoll = dynamic_cast< CHL2MPRagdoll* >(CreateEntityByName("hl2mp_ragdoll"));
+		pRagdoll = dynamic_cast< CTrainMayhemRagdoll* >(CreateEntityByName("hl2mp_ragdoll"));
 	}
 
 	if (pRagdoll)
@@ -1267,11 +1294,6 @@ void CTrainMayhemPlayer::DeathSound(const CTakeDamageInfo &info)
 	ep.m_pOrigin = &vecOrigin;
 
 	EmitSound(filter, entindex(), ep);
-}
-
-LadderMove_t *CTrainMayhemPlayer::GetLadderMove(void)
-{
-	return 
 }
 
 CBaseEntity* CTrainMayhemPlayer::EntSelectSpawnPoint(void)

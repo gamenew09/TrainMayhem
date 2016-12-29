@@ -3,12 +3,11 @@
 #pragma once
 
 #include "basemultiplayerplayer.h"
-//#include "hl2_playerlocaldata.h"
+#include "trainmayhem_playerlocaldata.h"
 #include "player.h"
 #include "simtimer.h"
 #include "soundenvelope.h"
 #include "trainmayhem_player_shared.h"
-//#include "trainmayhem_player.h"
 #include "trainmayhem_gamerules.h"
 #include "utldict.h"
 
@@ -66,6 +65,8 @@ public:
 	virtual void UpdateOnRemove(void);
 	virtual void DeathSound(const CTakeDamageInfo &info);
 	virtual CBaseEntity* EntSelectSpawnPoint(void);
+
+	virtual LadderMove_t *GetLadderMove();
 
 	int FlashlightIsOn(void);
 	void FlashlightTurnOn(void);
@@ -128,6 +129,7 @@ public:
 
 	virtual bool	CanHearAndReadChatFrom(CBasePlayer *pPlayer);
 
+	CNetworkVarEmbedded(CTrainMayhemPlayerLocalData, m_LocalData);
 
 private:
 
@@ -151,8 +153,6 @@ private:
 
 	// This lets us rate limit the commands the players can execute so they don't overflow things like reliable buffers.
 	CUtlDict<float, int>	m_RateLimitLastCommandTimes;
-
-	CNetworkVarEmbedded(CTrainMayhemPlayerLocalData, m_LocalData);
 
 	bool m_bEnterObserver;
 	bool m_bReady;

@@ -23,7 +23,7 @@ extern IVModelInfo* modelinfo;
 
 #include "vgui/ISurface.h"
 #include "vgui_controls/Controls.h"
-#include "c_hl2mp_player.h"
+#include "c_trainmayhem_player.h"
 #include "hud_crosshair.h"
 
 #else

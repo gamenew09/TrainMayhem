@@ -26,8 +26,8 @@ $Project "Client (Train Mayhem)"
 
 		$File	"c_team_objectiveresource.cpp"
 		$File	"c_team_objectiveresource.h"
-		//$File	"c_team_train_watcher.cpp"
-		//$File	"c_team_train_watcher.h"
+		$File	"c_team_train_watcher.cpp"
+		$File	"c_team_train_watcher.h"
 		$File	"hud_voicestatus.cpp"
 		$File	"$SRCDIR\game\shared\predicted_viewmodel.cpp"
 		$File	"$SRCDIR\game\shared\predicted_viewmodel.h"
@@ -119,7 +119,45 @@ $Project "Client (Train Mayhem)"
 
 		$Folder "Train Mayhem"
 		{
+			$Folder "UI"
+			{
+				// Weapon Selection
+				$File "trainmayhem\ui\hud_weaponselection.cpp"
+				
+				// CHudChat
+				$File "trainmayhem\ui\trainmayhem_hud_chat.cpp"
+				$File "trainmayhem\ui\trainmayhem_hud_chat.h"
+			}
+			
 			// TODO: Add client specific files.
+		
+			// C_Corpse
+			$File "trainmayhem\c_corpse.cpp"
+			$File "trainmayhem\c_corpse.h"
+			
+			// C_TrainMayhemPlayer
+			$File "trainmayhem\c_trainmayhem_player.h"
+			$File "trainmayhem\c_trainmayhem_player.cpp"
+			
+			// Player Local Data Client
+			$File "trainmayhem\c_trainmayhem_playerlocaldata.cpp"
+			$File "trainmayhem\c_trainmayhem_playerlocaldata.h"
+			
+			// ClientMode Normal
+			$File "trainmayhem\clientmode_trainmayhemnormal.h"
+			$File "trainmayhem\clientmode_trainmayhemnormal.cpp"
+			
+			// ClientMode
+			$File "trainmayhem\trainmayhem_clientmode.cpp"
+			
+			// Input
+			$File "trainmayhem\trainmayhem_in_main.cpp"
+			
+			// Prediction
+			$File "trainmayhem\trainmayhem_prediction.cpp"
+			
+			// VGUI Rootpanel
+			$File "trainmayhem\vgui_rootpanel_trainmayhem.cpp"
 		
 			// Shared Files //
 			
@@ -141,6 +179,10 @@ $Project "Client (Train Mayhem)"
 			
 			// Move Data
 			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_movedata.h"
+			
+			// GameMovement Class.
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamemovement.h"
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamemovement.cpp"
 			
 			// User Message Registration
 			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_usermessages.cpp"
