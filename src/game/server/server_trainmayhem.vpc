@@ -1,0 +1,104 @@
+//-----------------------------------------------------------------------------
+//	SERVER_HL2MP.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro GAMENAME 	"trainmayhem"
+
+$Include "$SRCDIR\game\server\server_base.vpc"
+$Include "$SRCDIR\game\server\nav_mesh.vpc" [$SOURCESDK]
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;.\trainmayhem,$SRCDIR\game\shared\trainmayhem"
+		$PreprocessorDefinitions		"$BASE;TRAINMAYHEM;TRAINMAYHEM_DLL"
+	}
+}
+
+$Project "Server (Train Mayhem)"
+{
+	$Folder	"Source Files"
+	{
+		$File	"ai_relationship.cpp"
+		$File	"basegrenade_concussion.cpp"
+		$File	"basegrenade_contact.cpp"
+		$File	"basegrenade_timed.cpp"
+		$File	"EntityFlame.h"
+		//$File	"hl2\Func_Monitor.cpp" // Kind of Half-Life 2 specific. Might add back in at a later date.
+		$File	"grenadethrown.cpp"
+		$File	"grenadethrown.h"
+		$File	"h_cycler.cpp"
+		$File	"h_cycler.h"
+		$File	"monstermaker.cpp"
+		$File	"monstermaker.h"
+		$File	"physics_bone_follower.h"
+		$File	"$SRCDIR\game\shared\predicted_viewmodel.cpp"
+		$File	"$SRCDIR\game\shared\predicted_viewmodel.h"
+		$File	"$SRCDIR\game\shared\ragdoll_shared.h"
+		$File	"$SRCDIR\game\shared\solidsetdefaults.h"
+		//$File	"$SRCDIR\game\shared\hl2\survival_gamerules.cpp" // Half-Life 2 specific.
+		$File	"team_objectiveresource.cpp"
+		$File	"team_objectiveresource.h"
+		$File	"team_spawnpoint.cpp"
+		$File	"team_spawnpoint.h"
+		$File	"team_control_point.cpp"
+		$File	"team_control_point.h"
+		$File	"team_control_point_master.cpp"
+		$File	"team_control_point_master.h"
+		$File	"team_control_point_round.cpp"
+		$File	"team_control_point_round.h"
+		$File	"team_train_watcher.cpp"
+		$File	"team_train_watcher.h"
+		$File	"$SRCDIR\game\shared\teamplayroundbased_gamerules.cpp" // We should probably use this as our gamerule template.
+		$File	"$SRCDIR\game\shared\touchlink.h"
+		$File	"trigger_area_capture.cpp"
+		$File	"trigger_area_capture.h"
+		$File   "$SRCDIR\game\shared\teamplay_round_timer.cpp"
+		$File   "$SRCDIR\game\shared\teamplay_round_timer.h"
+
+		$Folder "Train Mayhem"
+		{
+			//trainmayhem_client: What source engine uses to load the modification.
+			$File "trainmayhem\trainmayhem_client.cpp"
+			
+			// trainmayhem_player
+			$File "trainmayhem\trainmayhem_player.cpp"
+			$File "trainmayhem\trainmayhem_player.h"
+			
+			// trainmayhem_gameinterface
+			$File "trainmayhem\trainmayhem_gameinterface.cpp"
+			$File "trainmayhem\trainmayhem_gameinterface.h"
+			
+			// PlayerMove
+			$File "trainmayhem\trainmayhem_playermove.cpp"
+			
+			// Shared Files //
+			
+			// Player Shared
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_player_shared.h"
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_player_shared.cpp"
+			
+			// Gamerules
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamerules.h"
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_gamerules.cpp"
+			
+			// Weapon Parse
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_weapon_parse.h"
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_weapon_parse.cpp"
+			
+			// Weapon Base
+			$File "$SRCDIR\game\shared\trainmayhem\weapon_trainmayhembase.h"
+			$File "$SRCDIR\game\shared\trainmayhem\weapon_trainmayhembase.cpp"
+		
+			// Move Data
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_movedata.h"
+			
+			// User Message Registration
+			$File "$SRCDIR\game\shared\trainmayhem\trainmayhem_usermessages.cpp"
+		}
+	}
+}
